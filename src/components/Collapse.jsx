@@ -9,6 +9,7 @@ class Collapse extends React.Component {
         };
     }
 
+
     handleClick = () => {
         this.setState(prevState => ({
             opened: !prevState.opened
