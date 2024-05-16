@@ -11,16 +11,16 @@ const Select = ({
                     },
                     name = ''
                 }) => {
-
     return (
         <div>
             {label && <Form.Label>{label}</Form.Label>}
             {Array.isArray(options) && options.length > 0 ? (
-                <Form.Select className="mb-3"
-                             name={name}
-                             aria-label={label}
-                             value={value}
-                             onChange={onChange}
+                <Form.Select
+                    className="mb-3"
+                    name={name}
+                    aria-label={label}
+                    value={value}
+                    onChange={onChange}
                 >
                     {options.map(option => (
                         <option key={option.value} value={option.value}>{option.label}</option>

@@ -4,14 +4,15 @@ import {cloneDeep} from "lodash";
 import Input from "../UI/Input/index.js";
 import Select from "../UI/Select/index.js";
 import Checkbox from "../UI/Checkbox/index.js";
+import PropTypes from "prop-types";
 
 const formInitialValues = {
     email: '',
     password: '',
     address: '',
     city: '',
-    country: '',
-    rules: '',
+    country: 'Choose country',
+    rules: 'off',
 }
 
 
@@ -19,18 +20,28 @@ class MyForm extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            formData: {...formInitialValues},
+            formData: props.formData ? {...props.formData} : {...formInitialValues},
         }
     }
 
     handleChange = (event) => {
-        const previousState = cloneDeep(this.state.formData);
-        previousState[event.target.name] = event.target.value;
-        this.setState({formData: previousState});
+        const previousData = cloneDeep(this.state.formData)
+
+        if (event.target.name === 'rules' && previousData[event.target.name] === 'on') {
+            previousData[event.target.name] = 'off';
+
+        } else if (event.target.name === 'rules' && previousData[event.target.name] === 'off') {
+            previousData[event.target.name] = 'on';
+        } else {
+            previousData[event.target.name] = event.target.value
+        }
+
+        this.setState({formData: previousData})
     }
 
     handleSubmit = (event) => {
         event.preventDefault();
+        this.props.onSubmit(this.state.formData);
         this.setState({formData: {...formInitialValues}});
 
     }
@@ -38,7 +49,7 @@ class MyForm extends Component {
     render() {
         const {email, password, address, city, country, rules} = this.state.formData;
         return (
-            <Form onClick={this.handleSubmit}>
+            <Form onSubmit={this.handleSubmit}>
                 <h4 className='text-center'>Form</h4>
 
                 <Input
@@ -78,6 +89,7 @@ class MyForm extends Component {
                     value={country}
                     onChange={this.handleChange}
                     options={[
+                        {value: '', label: 'Choose country'},
                         {value: 'argentina', label: 'Argentina'},
                         {value: 'ukraine', label: 'Ukraine'},
                         {value: 'china', label: 'China'}
@@ -99,5 +111,12 @@ class MyForm extends Component {
     }
 
 }
+
+
+MyForm.propTypes = {
+    onSubmit: PropTypes.func.isRequired,
+    formData: PropTypes.object,
+}
+
 
 export default MyForm;
