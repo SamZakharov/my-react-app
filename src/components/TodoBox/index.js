@@ -1,3 +1,3 @@
-import Item from '../Item/Item.jsx'
+import TodoBox from './TodoBox'
 
-export default Item
+export default TodoBox
