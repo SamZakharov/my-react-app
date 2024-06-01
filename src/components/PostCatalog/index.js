@@ -1,3 +1,3 @@
-import PostCatalog from './PostCatalog.jsx';
+import PostCatalog from './PostCatalog';
 
 export default PostCatalog;
