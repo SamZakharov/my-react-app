@@ -1,0 +1,24 @@
+.posts {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.posts__list {
+    padding: 0;
+    margin: 0;
+}
+
+.posts_single-post {
+    margin: 10px 0;
+    padding: 10px;
+    border: 1px solid #ccc;
+}
+
+.posts__post-title {
+    margin: 0 0 10px;
+}
+
+.posts__post-description {
+    margin: 0;
+}
