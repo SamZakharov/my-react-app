@@ -66,7 +66,7 @@
 
 import {Navigate, Route, Routes} from "react-router-dom";
 import PropTypes from "prop-types";
-import Products from "./pages/Products";
+import Products from "./components/Products";
 import NotFound from "./pages/NotFound";
 import CheckoutPage from "./pages/CheckoutPage";
 import DetailPage from "./pages/DetailPage";

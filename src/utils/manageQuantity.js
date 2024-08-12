@@ -1,32 +1,28 @@
-import findItem from "./FindCartProduct";
+import findItem from './FindCartProduct';
 
 function manageQuantity(cartArray, id, action) {
     const item = findItem(cartArray, id);
-    const increasedQuantity = {
-        ...item,
-        [item.quantity]:
-            action === "INCREASE"
-                ? item.quantity++
-                : action === "DECREASE" && item.quantity--,
-    };
-    return increasedQuantity;
+    if (item) {
+        if (action === 'INCREASE') {
+            item.quantity += 1;
+        } else if (action === 'DECREASE' && item.quantity > 1) {
+            item.quantity -= 1;
+        }
+    }
 }
 
 const orderSum = (ordersArray) => {
-    const ordersCount = ordersArray.reduce(
+    return ordersArray.reduce(
         (previousValue, currentValue) => previousValue + currentValue.quantity,
         0
     );
-    return ordersCount;
 };
 
 const PriceSum = (ordersArray) => {
-    const totalPrice = ordersArray.reduce(
+    return ordersArray.reduce(
         (previousValue, currentValue) => previousValue + (currentValue.price * currentValue.quantity),
         0
     );
-
-    return totalPrice;
 };
 
 export {manageQuantity, orderSum, PriceSum};

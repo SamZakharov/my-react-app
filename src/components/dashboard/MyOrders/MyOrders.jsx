@@ -1,44 +1,41 @@
-import {useEffect, useState} from "react";
-import PropTypes from 'prop-types';
-import {useAuth} from "../../../context/AuthenticateProvider";
-import {api} from "../../../services/axiosConfig.js";
+import {useEffect} from "react";
+import {useDispatch, useSelector} from "react-redux";
 import {Box, CircularProgress, Paper, Typography} from "@mui/material";
+import {createOrder} from "../../../redux/slices/orderSlice.js"; // Импортируем экшены из слайса заказов
 import EmptyOrders from "../../EmptyOrders";
-import {styles} from "./styles.js";
+import {styles} from "./styles";
 
 const MyOrders = () => {
-    const {isAuthenticated} = useAuth();
-    const [orders, setOrders] = useState([]);
-    const [isLoading, setIsloading] = useState(true);
+    const dispatch = useDispatch();
+    const {orders, status, error} = useSelector((state) => state.orders);
+    const {cartItems} = useSelector((state) => state.cart); // Предположим, что у вас есть состояние корзины
 
     useEffect(() => {
-        const getOrders = async () => {
-            try {
-                const {data, status} = await api.get("/user/myorders");
-                if (status === 204) setIsloading(false);
-                setOrders(data);
-                setIsloading(false);
-            } catch (error) {
-                console.error("Error fetching orders:", error);
-                setIsloading(false);
-            }
-        };
+        if (cartItems.length > 0) {
+            // Создаем данные заказа на основе корзины
+            const orderData = {
+                addedProducts: cartItems,
+                ordersCount: cartItems.length, // Примерный подсчет количества товаров
+                totalPrice: cartItems.reduce((total, item) => total + item.price * item.quantity, 0) // Примерный подсчет общей стоимости
+                // Другие необходимые поля, такие как адрес, способ оплаты и т. д.
+            };
+            dispatch(createOrder(orderData));
+        }
+    }, [dispatch, cartItems]); // Добавляем cartItems в зависимости
 
-        if (isAuthenticated) getOrders();
-    }, [isAuthenticated]);
+    if (status === 'loading') return <CircularProgress color="primary"/>;
+    if (status === 'failed') return <Typography>Error creating order: {error}</Typography>;
 
     return (
         <Box sx={styles.container}>
-            {isLoading ? (
-                <CircularProgress color="primary"/>
-            ) : !orders.length ? (
+            {!orders.length ? (
                 <EmptyOrders/>
             ) : (
                 orders.map((order) => (
-                    <Paper key={order._id} sx={styles.orderCard}>
+                    <Paper key={order.id} sx={styles.orderCard}> {/* Используем id вместо _id */}
                         <ul>
                             {order.addedProducts.map((product) => (
-                                <Box key={product._id} sx={styles.productRow}>
+                                <Box key={product.id} sx={styles.productRow}> {/* Используем id вместо _id */}
                                     <Typography variant="body1" sx={styles.productTitle}>
                                         {product.title}
                                     </Typography>
@@ -64,24 +61,6 @@ const MyOrders = () => {
             )}
         </Box>
     );
-};
-
-MyOrders.propTypes = {
-    orders: PropTypes.arrayOf(
-        PropTypes.shape({
-            _id: PropTypes.string.isRequired,
-            addedProducts: PropTypes.arrayOf(
-                PropTypes.shape({
-                    _id: PropTypes.string.isRequired,
-                    title: PropTypes.string.isRequired,
-                    price: PropTypes.number.isRequired,
-                    quantity: PropTypes.number.isRequired,
-                })
-            ).isRequired,
-            ordersCount: PropTypes.number.isRequired,
-            totalPrice: PropTypes.number.isRequired,
-        })
-    ),
 };
 
 export default MyOrders;

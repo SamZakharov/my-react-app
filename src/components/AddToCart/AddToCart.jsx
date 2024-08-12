@@ -1,40 +1,40 @@
 import PropTypes from 'prop-types';
 import {MdOutlineDelete} from 'react-icons/md';
-import findItem from '../../utils/FindCartProduct.js';
-import {useCartCunsumer} from '../../context/CartProvider/CartProvider.jsx';
-import {useAuth} from '../../context/AuthenticateProvider/AuthenticateProvider.jsx';
+import {useDispatch, useSelector} from 'react-redux';
 import {useNavigate} from 'react-router-dom';
 import {Box, Button, IconButton, Typography} from '@mui/material';
-import {styles} from './styles'; // Import the styles
+import {addProduct, decrease, deleteProduct, increase} from '../../redux/slices/cartSlice';
+import {styles} from './styles';
 
 const AddToCart = ({cartData}) => {
-    const {cartState, dispatch} = useCartCunsumer();
-    const {isAuthenticated} = useAuth();
+    const dispatch = useDispatch();
     const navigate = useNavigate();
-    const cartInfo = {...cartData, quantity: 1};
+    const isAuthenticated = useSelector(state => state.auth.isAuthenticated);
+    const addedProducts = useSelector(state => state.cart.addedProducts);
 
-    const item = findItem(cartState.addedProducts, cartInfo.id);
+    const cartInfo = {...cartData, quantity: 1};
+    const item = addedProducts.find(product => product.id === cartInfo.id);
 
     const addHandler = () => {
         if (!isAuthenticated) return navigate('/auth/login');
-        dispatch({type: 'ADD_PRODUCT', payload: cartInfo});
+        dispatch(addProduct(cartInfo));
     };
 
     const increaseHandler = () => {
-        dispatch({type: 'INCREASE', payload: cartInfo.id});
+        dispatch(increase(cartInfo.id));
     };
 
     const decreaseHandler = () => {
-        dispatch({type: 'DECREASE', payload: cartInfo.id});
+        dispatch(decrease(cartInfo.id));
     };
 
     const removeHandler = () => {
-        dispatch({type: 'DELETE', payload: cartInfo.id});
+        dispatch(deleteProduct(cartInfo.id));
     };
 
     return (
         <Box sx={styles.container}>
-            {cartState.addedProducts.find(cartProduct => cartProduct.id === cartData.id) ? (
+            {item ? (
                 <Box sx={styles.quantityControls}>
                     <IconButton sx={styles.button} onClick={increaseHandler}>
                         +

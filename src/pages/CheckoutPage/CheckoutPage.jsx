@@ -1,130 +1,43 @@
-// import React, {useEffect} from "react";
-// import {useDispatch, useSelector} from "react-redux";
-// import {Box, Button, Grid, Paper, Typography} from "@mui/material";
-// import AddToCart from "../../components/AddToCart";
-// import EmptyCart from "../../components/EmptyCart";
-// import api from "../../services/axiosConfig.js";
-// import {useCheckoutPageStyles} from "./CheckoutPageStyles";
-// import {checkout, clearCart, selectCartState} from "../../store/slices/cartSlice"; // Импортируем действия и селектор
-// import {selectUserInfo} from "../../store/slices/authSlice.js"; // Импортируем селектор для информации о пользователе
-//
-// export default function CheckoutPage() {
-//     const classes = useCheckoutPageStyles();
-//     const dispatch = useDispatch();
-//     const cartState = useSelector(selectCartState);
-//     const userInfo = useSelector(selectUserInfo);
-//
-//     useEffect(() => {
-//         if (!cartState.checkout) return;
-//         const postOrder = async () => {
-//             const orderData = {
-//                 ...cartState,
-//                 userInfo,
-//             };
-//             try {
-//                 const response = await api.post("/order", orderData);
-//                 console.log(response);
-//                 dispatch(clearCart()); // Используем действие для очистки корзины
-//             } catch (error) {
-//                 console.error("Error posting order:", error);
-//             }
-//         };
-//         postOrder();
-//     }, [cartState, dispatch, userInfo]);
-//
-//     const checkoutHandler = () => {
-//         dispatch(checkout()); // Используем действие для начала оформления заказа
-//     };
-//
-//     return (
-//         <>
-//             {cartState.checkout || !cartState.addedProducts.length ? (
-//                 <EmptyCart/>
-//             ) : (
-//                 <Box className={classes.wrapper}>
-//                     <Grid container spacing={2} className={classes.gridContainer}>
-//                         <Grid item xs={12} lg={8}>
-//                             <Paper className={classes.cartDetails}>
-//                                 <Box className={classes.cartHeader}>
-//                                     <Typography variant="body1" className={classes.cartHeaderText}>PRODUCT</Typography>
-//                                     <Typography variant="body1" className={classes.cartHeaderText}>PRICE</Typography>
-//                                     <Typography variant="body1" className={classes.cartHeaderText}>QUANTITY</Typography>
-//                                     <Typography variant="body1" className={classes.cartHeaderText}>SUBTOTAL</Typography>
-//                                 </Box>
-//                                 {cartState.addedProducts.map((product) => (
-//                                     <Box key={product.id} className={classes.cartItem}>
-//                                         <Typography variant="body2"
-//                                                     className={classes.cartItemText}>{product.title}</Typography>
-//                                         <Typography variant="body2"
-//                                                     className={classes.cartItemText}>$ {product.price}</Typography>
-//                                         <AddToCart
-//                                             cartData={{id: product.id, title: product.title, price: product.price}}/>
-//                                         <Typography variant="body2"
-//                                                     className={classes.cartItemText}>$ {product.quantity * product.price}</Typography>
-//                                     </Box>
-//                                 ))}
-//                             </Paper>
-//                         </Grid>
-//                         <Grid item xs={12} lg={4}>
-//                             <Paper className={classes.summary}>
-//                                 <Box className={classes.summaryItem}>
-//                                     <Typography variant="h6">Order Total :</Typography>
-//                                     <Typography variant="h6">$ {cartState.totalPrice}</Typography>
-//                                 </Box>
-//                                 <Box className={classes.summaryItem}>
-//                                     <Typography variant="h6">Sales volume :</Typography>
-//                                     <Typography variant="h6">{cartState.ordersCount}</Typography>
-//                                 </Box>
-//                                 <Box className={classes.checkoutButtonWrapper}>
-//                                     <Button variant="contained" color="primary" onClick={checkoutHandler}>
-//                                         CHECKOUT
-//                                     </Button>
-//                                 </Box>
-//                             </Paper>
-//                         </Grid>
-//                     </Grid>
-//                 </Box>
-//             )}
-//         </>
-//     );
-// }
-
-
-import React, {useEffect} from "react";
+import {useEffect} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {Box, Button, Grid, Paper, Typography} from "@mui/material";
 import AddToCart from "../../components/AddToCart";
 import EmptyCart from "../../components/EmptyCart";
-import api from "../../services/axiosConfig.js";
-import styles from "./CheckoutPage.module.css"; // Импортируем CSS модуль
-import {checkout, clearCart, selectCartState} from "../../store/slices/cartSlice"; // Импортируем действия и селектор
-import {selectUserInfo} from "../../store/slices/authSlice.js"; // Импортируем селектор для информации о пользователе
+import {checkout, clear, selectCartState} from "../../redux/slices/cartSlice.js";
+import {selectUserInfo} from "../../redux/slices/authSlice.js";
+import {useCreateOrderMutation} from "../../redux/productsApi/productsApi.js";
+import {styles} from './styles.js';
+import PropTypes from "prop-types";
 
-export default function CheckoutPage() {
+function CheckoutPage() {
     const dispatch = useDispatch();
     const cartState = useSelector(selectCartState);
     const userInfo = useSelector(selectUserInfo);
+    const [createOrder, {isSuccess, isError, error}] = useCreateOrderMutation();
 
     useEffect(() => {
         if (!cartState.checkout) return;
+
         const postOrder = async () => {
             const orderData = {
                 ...cartState,
                 userInfo,
             };
+
             try {
-                const response = await api.post("/order", orderData);
+                const response = await createOrder(orderData).unwrap();
                 console.log(response);
-                dispatch(clearCart()); // Используем действие для очистки корзины
+                dispatch(clear());
             } catch (error) {
                 console.error("Error posting order:", error);
             }
         };
+
         postOrder();
-    }, [cartState, dispatch, userInfo]);
+    }, [cartState, dispatch, userInfo, createOrder]);
 
     const checkoutHandler = () => {
-        dispatch(checkout()); // Используем действие для начала оформления заказа
+        dispatch(checkout());
     };
 
     return (
@@ -132,41 +45,41 @@ export default function CheckoutPage() {
             {cartState.checkout || !cartState.addedProducts.length ? (
                 <EmptyCart/>
             ) : (
-                <Box className={styles.wrapper}>
-                    <Grid container spacing={2} className={styles.gridContainer}>
+                <Box sx={styles.wrapper}>
+                    <Grid container spacing={2} sx={styles.gridContainer}>
                         <Grid item xs={12} lg={8}>
-                            <Paper className={styles.cartDetails}>
-                                <Box className={styles.cartHeader}>
-                                    <Typography variant="body1" className={styles.cartHeaderText}>PRODUCT</Typography>
-                                    <Typography variant="body1" className={styles.cartHeaderText}>PRICE</Typography>
-                                    <Typography variant="body1" className={styles.cartHeaderText}>QUANTITY</Typography>
-                                    <Typography variant="body1" className={styles.cartHeaderText}>SUBTOTAL</Typography>
+                            <Paper sx={styles.cartDetails}>
+                                <Box sx={styles.cartHeader}>
+                                    <Typography variant="body1" sx={styles.cartHeaderText}>PRODUCT</Typography>
+                                    <Typography variant="body1" sx={styles.cartHeaderText}>PRICE</Typography>
+                                    <Typography variant="body1" sx={styles.cartHeaderText}>QUANTITY</Typography>
+                                    <Typography variant="body1" sx={styles.cartHeaderText}>SUBTOTAL</Typography>
                                 </Box>
                                 {cartState.addedProducts.map((product) => (
-                                    <Box key={product.id} className={styles.cartItem}>
+                                    <Box key={product.id} sx={styles.cartItem}>
                                         <Typography variant="body2"
-                                                    className={styles.cartItemText}>{product.title}</Typography>
+                                                    sx={styles.cartItemText}>{product.title}</Typography>
                                         <Typography variant="body2"
-                                                    className={styles.cartItemText}>$ {product.price}</Typography>
+                                                    sx={styles.cartItemText}>$ {product.price}</Typography>
                                         <AddToCart
                                             cartData={{id: product.id, title: product.title, price: product.price}}/>
                                         <Typography variant="body2"
-                                                    className={styles.cartItemText}>$ {product.quantity * product.price}</Typography>
+                                                    sx={styles.cartItemText}>$ {product.quantity * product.price}</Typography>
                                     </Box>
                                 ))}
                             </Paper>
                         </Grid>
                         <Grid item xs={12} lg={4}>
-                            <Paper className={styles.summary}>
-                                <Box className={styles.summaryItem}>
+                            <Paper sx={styles.summary}>
+                                <Box sx={styles.summaryItem}>
                                     <Typography variant="h6">Order Total :</Typography>
                                     <Typography variant="h6">$ {cartState.totalPrice}</Typography>
                                 </Box>
-                                <Box className={styles.summaryItem}>
+                                <Box sx={styles.summaryItem}>
                                     <Typography variant="h6">Sales volume :</Typography>
                                     <Typography variant="h6">{cartState.ordersCount}</Typography>
                                 </Box>
-                                <Box className={styles.checkoutButtonWrapper}>
+                                <Box sx={styles.checkoutButtonWrapper}>
                                     <Button variant="contained" color="primary" onClick={checkoutHandler}>
                                         CHECKOUT
                                     </Button>
@@ -179,3 +92,24 @@ export default function CheckoutPage() {
         </>
     );
 }
+
+CheckoutPage.propTypes = {
+    cartState: PropTypes.shape({
+        checkout: PropTypes.bool.isRequired,
+        addedProducts: PropTypes.arrayOf(
+            PropTypes.shape({
+                id: PropTypes.number.isRequired,
+                title: PropTypes.string.isRequired,
+                price: PropTypes.number.isRequired,
+                quantity: PropTypes.number.isRequired,
+            })
+        ).isRequired,
+        totalPrice: PropTypes.number.isRequired,
+        ordersCount: PropTypes.number.isRequired,
+    }).isRequired,
+    userInfo: PropTypes.shape({
+        // Определите форму userInfo при необходимости
+    }).isRequired,
+};
+
+export default CheckoutPage;

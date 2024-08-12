@@ -1,12 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {Outlet, useNavigate} from 'react-router-dom';
-import {useAuth} from '../../context/AuthenticateProvider';
+import {useSelector} from 'react-redux';
 import {Box} from '@mui/material';
 
 function AuthProtected({children}) {
     const navigate = useNavigate();
-    const {isAuthenticated} = useAuth();
+    const isAuthenticated = useSelector(state => state.auth.isAuthenticated);
+
+    React.useEffect(() => {
+        if (isAuthenticated) {
+            navigate('/');
+        }
+    }, [isAuthenticated, navigate]);
 
     if (!isAuthenticated) {
         return (
@@ -16,7 +22,6 @@ function AuthProtected({children}) {
             </Box>
         );
     } else {
-        navigate('/');
         return null;
     }
 }
