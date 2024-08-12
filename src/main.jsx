@@ -1,14 +1,12 @@
-import ReactDOM from 'react-dom/client';
-import {Provider} from 'react-redux';
-import App from './App.jsx';
-import store from './store';
-import './index.css';
+import ReactDOM from "react-dom/client";
+import {BrowserRouter} from "react-router-dom";
+import App from "./App.jsx";
+import './styles/style.css'
 
-
-const root = ReactDOM.createRoot(document.getElementById('root'));
-
-root.render(
-    <Provider store={store}>
-        <App/>
-    </Provider>
+ReactDOM.createRoot(document.getElementById("root")).render(
+    <BrowserRouter>
+        {/* <React.StrictMode> */}
+        <App isAuthenticated/>
+        {/* </React.StrictMode> */}
+    </BrowserRouter>
 );

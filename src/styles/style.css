@@ -1,0 +1,48 @@
+/* Высота html и body на 100% */
+html, body {
+    height: 100%;
+    margin: 0;
+}
+
+/* Устанавливаем flexbox для root */
+#root {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+:root {
+    --background-paper: #ffffff; /* Белый цвет фона для бумаги */
+    --divider: #e0e0e0; /* Цвет разделителей */
+    --primary-main: #6200ea; /* Основной цвет */
+    --text-secondary: #757575; /* Вторичный цвет текста */
+    --text-primary: #000000; /* Основной цвет текста */
+    --background-default: #f5f5f5; /* Основной фон */
+}
+
+/* Main растягивается */
+main {
+    flex: 1; /* Растягивает основной контент, занимая всё доступное пространство */
+}
+
+/* Футер фиксируется внизу */
+footer {
+    background-color: #fff;
+    padding: 1rem;
+    text-align: center;
+    box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Основной контейнер */
+.baseContainer {
+    max-width: 1150px; /* или 1200px, в зависимости от ваших предпочтений */
+    margin: 0 auto; /* Центрирует контейнер */
+    padding: 0 15px; /* Добавляет отступы внутри контейнера для небольшого "воздуха" */
+}
+
+/* Дополнительные стили для body */
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    background-color: white;
+}

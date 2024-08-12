@@ -1,0 +1,41 @@
+/* Signup.module.css */
+.container {
+    padding: 32px; /* Заменено с theme.spacing(4) */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #fafafa; /* Заменено с theme.palette.background.default */
+}
+
+.formContainer {
+    background-color: #ffffff; /* Заменено с theme.palette.background.paper */
+    border-radius: 8px; /* Заменено с theme.shape.borderRadius */
+    padding: 32px; /* Заменено с theme.spacing(4) */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Заменено с theme.shadows[5] */
+    max-width: 600px;
+    width: 100%;
+}
+
+.title {
+    color: #1976d2; /* Заменено с theme.palette.primary.main */
+    margin-bottom: 24px; /* Заменено с theme.spacing(3) */
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+}
+
+.buttonContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 16px; /* Заменено с theme.spacing(2) */
+}
+
+.link {
+    margin-top: 16px; /* Заменено с theme.spacing(2) */
+    text-decoration: none;
+    color: #1976d2; /* Заменено с theme.palette.primary.main */
+}

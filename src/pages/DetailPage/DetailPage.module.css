@@ -1,0 +1,92 @@
+/* DetailPage.module.css */
+.wrapper {
+    display: flex;
+    justify-content: center;
+    padding: 32px; /* Заменено с theme.spacing(4) */
+    max-width: 1200px; /* Заменено с theme.breakpoints.up('7xl') */
+    margin: auto;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    background-color: #f5f5f5; /* Заменено с theme.palette.grey[100] */
+    border: 1px solid #e0e0e0; /* Заменено с theme.palette.grey[300] */
+    border-radius: 8px; /* Заменено с theme.shape.borderRadius */
+    padding: 32px; /* Заменено с theme.spacing(4) */
+    max-width: 800px; /* Заменено с theme.breakpoints.up('lg') */
+    margin-top: 16px; /* Заменено с theme.spacing(2) */
+    position: relative;
+    /* Для больших экранов */
+    @media (min-width: 1024px) {
+        flex-direction: row;
+        padding: 64px; /* Заменено с theme.spacing(8) */
+    }
+}
+
+.backLink {
+    position: absolute;
+    top: 8px; /* Заменено с theme.spacing(1) */
+    right: 16px; /* Заменено с theme.spacing(2) */
+    display: flex;
+    align-items: center;
+    background-color: #e0e0e0; /* Заменено с theme.palette.grey[200] */
+    border: 1px solid #e0e0e0; /* Заменено с theme.palette.grey[300] */
+    border-radius: 8px; /* Заменено с theme.shape.borderRadius */
+    padding: 8px 16px; /* Заменено с theme.spacing(1, 2) */
+    text-decoration: none;
+    color: #333; /* Заменено с theme.palette.text.primary */
+    font-size: 14px; /* Заменено с theme.typography.pxToRem(14) */
+    /* Для больших экранов */
+    @media (min-width: 1024px) {
+        font-size: 16px; /* Заменено с theme.typography.pxToRem(16) */
+    }
+}
+
+.backIcon {
+    margin-right: 8px; /* Заменено с theme.spacing(1) */
+}
+
+.details {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-left: 16px; /* Заменено с theme.spacing(2) */
+    margin-top: 16px; /* Заменено с theme.spacing(2) */
+    /* Для больших экранов */
+    @media (min-width: 1024px) {
+        margin-top: 0;
+        margin-left: 32px; /* Заменено с theme.spacing(4) */
+    }
+}
+
+.title {
+    font-weight: bold; /* Заменено с theme.typography.fontWeightBold */
+    margin-bottom: 16px; /* Заменено с theme.spacing(2) */
+}
+
+.category {
+    color: #757575; /* Заменено с theme.palette.text.secondary */
+    margin-bottom: 16px; /* Заменено с theme.spacing(2) */
+}
+
+.description {
+    margin-bottom: 16px; /* Заменено с theme.spacing(2) */
+    color: #757575; /* Заменено с theme.palette.text.secondary */
+}
+
+.priceContainer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 16px; /* Заменено с theme.spacing(2) */
+}
+
+.priceLabel {
+    color: #757575; /* Заменено с theme.palette.text.secondary */
+}
+
+.price {
+    font-weight: bold; /* Заменено с theme.typography.fontWeightBold */
+    color: #333; /* Заменено с theme.palette.text.primary */
+}
