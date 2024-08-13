@@ -1,32 +1,21 @@
 import {useEffect, useState} from 'react';
 import PropTypes from 'prop-types';
 import {useSearchParams} from 'react-router-dom';
-import {api} from '../../services/axiosConfig.js';
 import {TbCategoryPlus} from 'react-icons/tb';
 import {ThreeDots} from 'react-loader-spinner';
 import {Box, IconButton, List, ListItem, Typography} from '@mui/material';
 import {styles} from './styles';
+import {useGetAllCategoriesQuery} from '../../redux/productsApi/productsApi.js';
 
 function FilterCategory({query, setQuery}) {
-    const [catList, setCatList] = useState([]);
     const [selectedCat, setSelectedCat] = useState(0);
     const [searchParams, setSearchParams] = useSearchParams();
     const [showCat, setShowCat] = useState(true);
 
-    useEffect(() => {
-        const getCategories = async () => {
-            const list = (await api.get('/categories')).data;
-            if (list.length) {
-                sessionStorage.setItem('categories', JSON.stringify(list));
-                setCatList(list);
-            }
-        };
-        if (sessionStorage.getItem('categories')) {
-            setCatList(JSON.parse(sessionStorage.getItem('categories')));
-        } else {
-            getCategories();
-        }
+    // Используем RTK Query для получения списка категорий
+    const {data: catList = [], isLoading} = useGetAllCategoriesQuery();
 
+    useEffect(() => {
         if (searchParams.get('category')) {
             setQuery({...query, category: searchParams.get('category')});
             setSelectedCat(searchParams.get('category'));
@@ -59,7 +48,7 @@ function FilterCategory({query, setQuery}) {
                     <TbCategoryPlus className="icon"/>
                     Categories:
                 </Typography>
-                {!catList.length ? (
+                {isLoading ? (
                     <ThreeDots
                         visible={true}
                         height="30"
@@ -105,9 +94,8 @@ function FilterCategory({query, setQuery}) {
 
 FilterCategory.propTypes = {
     query: PropTypes.shape({
-        search: PropTypes.string,
-        query: PropTypes.string,
-        setQuery: PropTypes.func.isRequired,
+        search: PropTypes.string,  // Проп search, если он есть в query
+        category: PropTypes.string, // Проп category, если он есть в query
     }).isRequired,
     setQuery: PropTypes.func.isRequired,
 };

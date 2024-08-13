@@ -33,13 +33,8 @@ export const styles = {
     listItem: {
         marginBottom: theme.spacing(1),
     },
-    link: {
-        color: theme.palette.grey[600],
-        textDecoration: "none",
-        "&:hover": {
-            color: theme.palette.grey[900],
-            textDecoration: "underline",
-        },
+    links: {
+        display: "flex",
     },
     description: {
         color: theme.palette.grey[600],

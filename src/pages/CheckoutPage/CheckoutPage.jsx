@@ -3,17 +3,24 @@ import {useDispatch, useSelector} from "react-redux";
 import {Box, Button, Grid, Paper, Typography} from "@mui/material";
 import AddToCart from "../../components/AddToCart";
 import EmptyCart from "../../components/EmptyCart";
-import {checkout, clear, selectCartState} from "../../redux/slices/cartSlice.js";
-import {selectUserInfo} from "../../redux/slices/authSlice.js";
-import {useCreateOrderMutation} from "../../redux/productsApi/productsApi.js";
-import {styles} from './styles.js';
-import PropTypes from "prop-types";
+import {checkout, clear, selectCartState} from "../../redux/slices/cartSlice";
+import {selectUserInfo} from "../../redux/slices/authSlice";
+import {useCreateOrderMutation} from "../../redux/productsApi/productsApi";
+import {styles} from './styles';
 
 function CheckoutPage() {
     const dispatch = useDispatch();
     const cartState = useSelector(selectCartState);
     const userInfo = useSelector(selectUserInfo);
     const [createOrder, {isSuccess, isError, error}] = useCreateOrderMutation();
+
+    useEffect(() => {
+        if (isSuccess) {
+            dispatch(clear());
+        } else if (isError) {
+            console.error("Error posting order:", error);
+        }
+    }, [isSuccess, isError, error, dispatch]);
 
     useEffect(() => {
         if (!cartState.checkout) return;
@@ -25,9 +32,7 @@ function CheckoutPage() {
             };
 
             try {
-                const response = await createOrder(orderData).unwrap();
-                console.log(response);
-                dispatch(clear());
+                await createOrder(orderData).unwrap();
             } catch (error) {
                 console.error("Error posting order:", error);
             }
@@ -93,23 +98,5 @@ function CheckoutPage() {
     );
 }
 
-CheckoutPage.propTypes = {
-    cartState: PropTypes.shape({
-        checkout: PropTypes.bool.isRequired,
-        addedProducts: PropTypes.arrayOf(
-            PropTypes.shape({
-                id: PropTypes.number.isRequired,
-                title: PropTypes.string.isRequired,
-                price: PropTypes.number.isRequired,
-                quantity: PropTypes.number.isRequired,
-            })
-        ).isRequired,
-        totalPrice: PropTypes.number.isRequired,
-        ordersCount: PropTypes.number.isRequired,
-    }).isRequired,
-    userInfo: PropTypes.shape({
-        // Определите форму userInfo при необходимости
-    }).isRequired,
-};
 
 export default CheckoutPage;

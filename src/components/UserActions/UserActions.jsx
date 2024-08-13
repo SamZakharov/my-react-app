@@ -1,16 +1,20 @@
-import React, {useState} from 'react';
+import {useState} from 'react';
 import {Link} from 'react-router-dom';
 import {Box, Button, Menu, MenuItem, Typography} from '@mui/material';
 import {TbChevronDown, TbLogin2, TbLogout2, TbUser, TbUserPlus} from 'react-icons/tb';
 import {CiShoppingBasket} from 'react-icons/ci';
-import {useAuth} from '../../context/AuthenticateProvider/AuthenticateProvider.jsx';
-import {useCartCunsumer} from '../../context/CartProvider/CartProvider.jsx';
+import {useDispatch, useSelector} from 'react-redux';
+import {logout, selectIsAuthenticated, selectUserInfo} from '../../redux/slices/authSlice.js';
+import {selectCartState} from '../../redux/slices/cartSlice.js'; // Импортируем селектор из cartSlice
 import {styles} from './styles';
 
 const UserActions = () => {
     const [anchorEl, setAnchorEl] = useState(null);
-    const {logOut, isAuthenticated, userInfo} = useAuth();
-    const {cartState: {ordersCount}} = useCartCunsumer();
+    const dispatch = useDispatch();
+
+    const isAuthenticated = useSelector(selectIsAuthenticated);
+    const userInfo = useSelector(selectUserInfo);
+    const ordersCount = useSelector((state) => selectCartState(state).ordersCount); // Используем селектор для получения количества товаров
 
     const handleClick = (event) => {
         setAnchorEl(event.currentTarget);
@@ -21,7 +25,7 @@ const UserActions = () => {
     };
 
     const handleLogout = () => {
-        logOut();
+        dispatch(logout());
         handleClose();
     };
 
@@ -41,8 +45,8 @@ const UserActions = () => {
                             <Typography sx={styles.welcomeText}>
                                 Welcome{' '}
                                 <span className="text-purpleshade-400">
-                  {userInfo.firstName}
-                </span>
+                                    {userInfo.firstName}
+                                </span>
                             </Typography>
                         </Button>
                         <Menu

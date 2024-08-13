@@ -1,5 +1,5 @@
 import React from 'react';
-import {useGetProductsQuery} from '../../redux/productsApi/productsApi.js'; // RTK Query hook
+import {useGetProductsQuery} from '../../redux/productsApi/productsApi.js';
 import Product from '../Product';
 import {Triangle} from 'react-loader-spinner';
 import Search from '../Search';
@@ -11,7 +11,7 @@ import searchFilterHandler from "../../utils/searchFilterHandler.js";
 
 function Products() {
     const {data: products = [], error, isLoading} = useGetProductsQuery();
-    const [query, setQuery] = React.useState('');
+    const [query, setQuery] = React.useState({});
     const [notFound, setNotFound] = React.useState(false);
 
     const filteredProducts = searchFilterHandler(query, products);
@@ -25,8 +25,8 @@ function Products() {
 
     return (
         <Container className={styles.container}>
-            <Search query={{query, setQuery}}/>
-            <FilterCategory query={query} setQuery={setQuery}/>
+            <Search query={{query, setQuery}} setQuery={setQuery}/>
+            <FilterCategory query={{query}} setQuery={setQuery}/>
             <Box className={styles.contentWrapper}>
                 <Box className={styles.productsGrid}>
                     {isLoading && (

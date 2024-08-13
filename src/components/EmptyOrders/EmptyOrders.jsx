@@ -10,7 +10,7 @@ const EmptyOrders = () => {
                 No orders
             </Typography>
             <Typography variant="body1" sx={styles.subTitle}>
-                You have no orders yet. It's never too late to change it.
+                {`You have no orders yet. It's never too late to change it.`}
             </Typography>
         </Box>
     );

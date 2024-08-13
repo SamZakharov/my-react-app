@@ -1,21 +1,27 @@
-// src/components/UserProfile.jsx
 import {useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
-import {fetchUserInfo, logOut} from '../../redux/slices/authSlice.js';
+import {
+    logout,
+    selectAuthError,
+    selectAuthStatus,
+    selectIsAuthenticated,
+    selectUserInfo
+} from '../../redux/slices/authSlice.js'; // Импортируйте необходимые селекторы
 import {Box, Button, Typography} from '@mui/material';
 
 function UserProfile() {
     const dispatch = useDispatch();
-    const {userInfo, isAuthenticated, status, error} = useSelector((state) => state.auth);
+    const userInfo = useSelector(selectUserInfo);
+    const isAuthenticated = useSelector(selectIsAuthenticated);
+    const status = useSelector(selectAuthStatus); // Селектор для статуса загрузки
+    const error = useSelector(selectAuthError); // Селектор для ошибок
 
     useEffect(() => {
-        if (isAuthenticated) {
-            dispatch(fetchUserInfo());
-        }
+        // Если необходимо обновить информацию о пользователе при аутентификации, добавьте логику здесь
     }, [dispatch, isAuthenticated]);
 
     const handleLogout = () => {
-        dispatch(logOut());
+        dispatch(logout());
     };
 
     if (status === 'loading') return <Typography>Loading...</Typography>;
@@ -24,7 +30,7 @@ function UserProfile() {
     return (
         <Box>
             <Typography variant="h6">
-                Welcome, {userInfo.firstName || 'Guest'}
+                Welcome, {userInfo?.firstName || 'Guest'}
             </Typography>
             {isAuthenticated && (
                 <Button onClick={handleLogout}>Log Out</Button>

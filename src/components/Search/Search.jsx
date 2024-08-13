@@ -48,10 +48,7 @@ const Search = ({query: {query, setQuery}}) => {
 };
 
 Search.propTypes = {
-    query: PropTypes.shape({
-        query: PropTypes.object.isRequired,
-        setQuery: PropTypes.func.isRequired,
-    }).isRequired,
+    query: PropTypes.object.isRequired,
+    setQuery: PropTypes.func.isRequired,
 };
-
 export default Search;

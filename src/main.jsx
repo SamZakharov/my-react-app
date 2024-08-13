@@ -5,8 +5,6 @@ import './styles/style.css'
 
 ReactDOM.createRoot(document.getElementById("root")).render(
     <BrowserRouter>
-        {/* <React.StrictMode> */}
-        <App isAuthenticated/>
-        {/* </React.StrictMode> */}
+        <App isAuthenticated={false}/>
     </BrowserRouter>
 );

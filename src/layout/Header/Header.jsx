@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import {useEffect, useState} from "react";
 import {Link} from "react-router-dom";
 import {AppBar, Box, Button, IconButton, Toolbar, Typography} from "@mui/material";
 import {FaGithub} from "react-icons/fa";

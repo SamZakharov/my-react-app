@@ -26,29 +26,30 @@
 //
 // export default NotFound;
 
-import React from 'react';
-import {Box, Container, Typography} from "@mui/material";
-import styles from "./NotFound.module.css"; // Импортируем CSS модуль
-import notFoundImage from "../../assets/404.svg";
 
-function NotFound() {
+import {Box, Container, Typography} from '@mui/material';
+import {styles} from './styles';
+import img from '../../assets/404.svg'
+
+const NotFound = () => {
     return (
-        <Container className={styles.container}>
-            <Box className={styles.imageContainer}>
+        <Container sx={styles.container}>
+            <Box sx={styles.imageContainer}>
                 <img
-                    className={styles.image}
-                    src={notFoundImage}
+                    sx={styles.image}
+                    src={img}
                     alt="Page not found"
                 />
             </Box>
-            <Typography variant="h1" className={styles.errorText}>
+            <Typography variant="h1" sx={styles.errorText}>
                 404
             </Typography>
-            <Typography variant="body1" className={styles.message}>
+            <Typography variant="body1" sx={styles.message}>
                 {`Oops! The page you're looking for can't be found.`}
             </Typography>
         </Container>
     );
-}
+};
+
 
 export default NotFound;

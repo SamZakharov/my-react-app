@@ -1,22 +1,25 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {Outlet, useNavigate} from 'react-router-dom';
-import {useSelector} from 'react-redux';
 import {Box, CircularProgress, Typography} from '@mui/material';
-import {selectIsAuthenticated} from '../../store/slices/authSlice.js';
-import {styles} from "./styles.js";
+import {getCookie} from '../../utils/cookies'; // Функция для получения куков
+import {styles} from './styles.js';
 
 const Protected = ({children}) => {
     const navigate = useNavigate();
-    const isAuthenticated = useSelector(selectIsAuthenticated);
+    const [isAuthenticated, setIsAuthenticated] = React.useState(null);
 
     React.useEffect(() => {
-        if (!isAuthenticated) {
+        const token = getCookie('authToken'); // Предполагается, что кука хранит токен аутентификации
+        if (token) {
+            setIsAuthenticated(true);
+        } else {
+            setIsAuthenticated(false);
             navigate('/auth/login');
         }
-    }, [isAuthenticated, navigate]);
+    }, [navigate]);
 
-    if (isAuthenticated === null) { // Check if authentication status is still loading
+    if (isAuthenticated === null) { // Пока идет проверка аутентификации
         return (
             <Box sx={styles.loadingContainer}>
                 <CircularProgress/>
@@ -25,16 +28,16 @@ const Protected = ({children}) => {
         );
     }
 
+    // Если аутентифицирован, рендерим детей, если они есть, или Outlet
     return (
         <>
-            {children}
-            <Outlet/>
+            {isAuthenticated ? (children ? children : <Outlet/>) : null}
         </>
     );
 };
 
 Protected.propTypes = {
-    children: PropTypes.node.isRequired,
+    children: PropTypes.node, // Измените на необязательный
 };
 
 export default Protected;

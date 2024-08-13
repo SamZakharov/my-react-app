@@ -67,9 +67,9 @@ import {TbLogout2, TbUser} from "react-icons/tb";
 import {CiShoppingTag} from "react-icons/ci";
 import {Link, Outlet} from "react-router-dom";
 import {Box, Divider, List, ListItem, ListItemIcon, ListItemText, Paper, Typography} from "@mui/material";
-import styles from './Dashbord.module.css'; // Импорт CSS модуля
+import {styles} from './styles';
 
-function Dashbord() {
+const Dashbord = () => {
     const dispatch = useDispatch();
 
     // Вызов useSelector с функцией для извлечения данных
