@@ -76,7 +76,7 @@ const UserActions = () => {
                     </Link>
                 </>
             ) : (
-                <>
+                <Box sx={styles.boxActions}>
                     <Link
                         className="text-sm md:text-base xl:text-xl mx-2 flex items-center"
                         to="/auth/login"
@@ -93,7 +93,7 @@ const UserActions = () => {
                         <TbUserPlus className="mr-2"/>
                         Sign Up
                     </Link>
-                </>
+                </Box>
             )}
         </Box>
     );

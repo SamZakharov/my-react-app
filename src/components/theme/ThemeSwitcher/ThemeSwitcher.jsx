@@ -1,4 +1,4 @@
-import React, {useRef, useState} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import {IconButton, Menu, MenuItem} from '@mui/material';
 import LightModeIcon from '@mui/icons-material/LightMode';
 import DarkModeIcon from '@mui/icons-material/DarkMode';
@@ -14,6 +14,14 @@ function ThemeSwitcher() {
     const [selectedTheme, setSelectedTheme] = useState(themes[0]); // По умолчанию первая тема
     const [anchorEl, setAnchorEl] = useState(null);
     const ref = useRef(null);
+
+    useEffect(() => {
+        // Инициализация темы при загрузке
+        const savedTheme = localStorage.getItem('theme') || 'light';
+        const initialTheme = themes.find(theme => theme.mode === savedTheme);
+        setSelectedTheme(initialTheme);
+        document.documentElement.classList.toggle('dark', savedTheme === 'dark');
+    }, []);
 
     const handleClick = (event) => {
         setAnchorEl(event.currentTarget);

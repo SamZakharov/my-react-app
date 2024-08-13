@@ -1,9 +1,12 @@
-import theme from "../../styles/theme.js";
-
 export const styles = {
     container: {
-        padding: theme.spacing(2),
-        backgroundColor: theme.palette.background.default,
+        display: 'flex',
+        padding: '16px',
+        backgroundColor: '#f5f5f5',
+    },
+    categoryContainer: {
+        borderRadius: '0',
+        backgroundColor: 'black'
     },
     contentWrapper: {
         display: 'flex',
@@ -13,7 +16,7 @@ export const styles = {
     productsGrid: {
         display: 'grid',
         gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
-        gap: theme.spacing(2),
+        gap: '16px',
         width: '100%',
     },
     loader: {

@@ -12,7 +12,7 @@ export default function DetailPage() {
     const {id} = useParams();
     console.log('ID from useParams:', id);
     const {data: product, error, isLoading} = useGetProductByIdQuery(id);
-    console.log('Product data:', product);
+    console.log('Product query result:', product);
 
     // State to manage the current image index
     const [imgIndex, setImgIndex] = useState(0);
@@ -51,7 +51,7 @@ export default function DetailPage() {
                         {product.category?.name || 'Unknown Category'}
                     </Typography>
                     <Typography variant="body1" sx={styles.description}>
-                        {product.description}
+                        {product.description || 'No description available'}
                     </Typography>
                     <Box sx={styles.priceContainer}>
                         <Box>

@@ -12,15 +12,23 @@ function FilterCategory({query, setQuery}) {
     const [searchParams, setSearchParams] = useSearchParams();
     const [showCat, setShowCat] = useState(true);
 
-    // Используем RTK Query для получения списка категорий
     const {data: catList = [], isLoading} = useGetAllCategoriesQuery();
 
     useEffect(() => {
-        if (searchParams.get('category')) {
-            setQuery({...query, category: searchParams.get('category')});
-            setSelectedCat(searchParams.get('category'));
+        // Получаем значение параметра 'category' из searchParams
+        const category = searchParams.get('category');
+        console.log('Category from searchParams:', category);
+
+        if (category) {
+            setQuery({...query, category});
+            setSelectedCat(category);
+        } else {
+            // Устанавливаем значение по умолчанию, если параметр не найден
+            setQuery({...query, category: 0});
+            setSelectedCat(0);
         }
-    }, [query, searchParams, setQuery]);
+    }, []);
+
 
     const categoryHandler = (e) => {
         const catId = e.target.id;

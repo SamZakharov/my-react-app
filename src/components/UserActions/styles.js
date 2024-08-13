@@ -1,4 +1,4 @@
-import theme from "../../styles/theme.js";
+// styles.js
 
 export const styles = {
     container: {
@@ -13,20 +13,20 @@ export const styles = {
     userButton: {
         display: 'flex',
         alignItems: 'center',
-        padding: theme.spacing(1),
-        color: theme.palette.text.primary,
+        padding: '8px', // 1 * 8px
+        color: '#333333', // Основной цвет текста
     },
     welcomeText: {
-        marginLeft: theme.spacing(1),
+        marginLeft: '8px', // 1 * 8px
         display: {xs: 'none', xl: 'block'},
     },
     menu: {
-        mt: theme.spacing(2),
+        marginTop: '16px', // 2 * 8px
     },
     cartLink: {
         position: 'relative',
-        marginLeft: theme.spacing(2),
-        marginRight: theme.spacing(2),
+        marginLeft: '16px', // 2 * 8px
+        marginRight: '16px', // 2 * 8px
         textDecoration: 'none',
     },
     cartIcon: {
@@ -38,20 +38,27 @@ export const styles = {
         position: 'absolute',
         top: -8,
         right: -8,
-        backgroundColor: theme.palette.primary.main,
-        color: theme.palette.common.white,
+        backgroundColor: '#6200ea', // Основной цвет
+        color: '#ffffff', // Белый цвет
         borderRadius: '50%',
-        width: 20,
-        height: 20,
+        width: '20px',
+        height: '20px',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        fontSize: theme.typography.body2.fontSize,
+        fontSize: '0.75rem', // fontSize из theme.typography.body2.fontSize
     },
     link: {
         textDecoration: 'none',
-        color: theme.palette.text.primary,
+        color: '#333333', // Основной цвет текста
         display: 'flex',
         alignItems: 'center',
     },
+
+    boxActions: {
+        display: 'flex',
+        flexDirection: 'row',
+        alignItems: 'center',
+        gap: '16px',
+    }
 };

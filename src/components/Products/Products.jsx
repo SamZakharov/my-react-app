@@ -24,13 +24,14 @@ function Products() {
     }, [filteredProducts, query]);
 
     return (
-        <Container className={styles.container}>
-            <Search query={{query, setQuery}} setQuery={setQuery}/>
-            <FilterCategory query={{query}} setQuery={setQuery}/>
-            <Box className={styles.contentWrapper}>
-                <Box className={styles.productsGrid}>
+        <Container sx={styles.container}>
+
+
+            <Box sx={styles.contentWrapper}>
+                <Search query={{query, setQuery}} setQuery={setQuery}/>
+                <Box sx={styles.productsGrid}>
                     {isLoading && (
-                        <Box className={styles.loader}>
+                        <Box sx={styles.loader}>
                             <Triangle
                                 visible
                                 height="200"
@@ -50,6 +51,7 @@ function Products() {
                     ))}
                 </Box>
             </Box>
+            <FilterCategory query={{query}} setQuery={setQuery} sx={styles.categoryContainer}/>
         </Container>
     );
 }
