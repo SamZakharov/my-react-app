@@ -1,26 +1,26 @@
-import theme from "../../styles/theme.js";
-
 export const styles = {
+
     searchContainer: {
         display: 'flex',
         alignItems: 'center',
         width: '100%',
-        maxWidth: 600,
-        padding: theme.spacing(1),
-        borderRadius: theme.shape.borderRadius,
-        backgroundColor: theme.palette.background.paper,
+        maxWidth: '300px',
+        padding: '8px',
+        borderRadius: '8px',
+        backgroundColor: 'white',
+        marginBottom: '20px',
     },
     searchIcon: {
-        padding: theme.spacing(1),
-        color: theme.palette.text.secondary,
+        backgroundColor: '#660db9',
+        height: '24px',
+        width: '24px',
+        color: '#3e1d5d', // Второстепенный цвет текста
     },
     input: {
-        flex: 1,
-        padding: theme.spacing(1),
-        fontSize: theme.typography.fontSize,
-        color: theme.palette.text.primary,
+        fontSize: '14px',
+        color: '#333333', // Основной цвет текста
         '& .MuiInputBase-input': {
-            paddingLeft: theme.spacing(2),
+            paddingLeft: '16px',
         },
     },
 };

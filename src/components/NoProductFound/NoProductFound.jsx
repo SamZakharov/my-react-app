@@ -1,6 +1,6 @@
 import {Box, CardMedia, Typography} from '@mui/material';
 import {styles} from './styles';
-import searchnotfound from '../../assets/404.svg';
+import searchnotfound from '../../assets/image/404/404.svg';
 
 const NoProductFound = () => {
     return (

@@ -49,7 +49,6 @@ const Header = () => {
                     </Button>
                 </Box>
 
-
                 <Box sx={styles.actions}>
                     <UserActions/>
                     <ThemeSwitcher/>

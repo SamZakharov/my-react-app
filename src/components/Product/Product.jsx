@@ -70,7 +70,6 @@ import {Link} from 'react-router-dom';
 import {Box, Card, CardContent, CardMedia, Typography} from '@mui/material';
 import AddToCart from '../AddToCart';
 import {styles} from './styles';
-import Button from "@mui/material/Button";
 
 const Product = ({productData}) => {
     const {id, title, price, images, category, description} = productData;
@@ -109,8 +108,8 @@ const Product = ({productData}) => {
                         ${price.toLocaleString()}
                     </Typography>
                 </Box>
-                <AddToCart cartData={{id, title, price}}/>
-                <Button sx={styles.button}>Add to cart</Button>
+                <AddToCart cartData={{id, title, price}} sx={styles.button}/>
+
             </CardContent>
         </Card>
     );

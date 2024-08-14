@@ -1,26 +1,24 @@
-import theme from "../../../styles/theme.js";
-
 export const styles = {
     container: {
         position: 'relative',
         textAlign: 'center',
     },
     iconButton: {
-        color: theme.palette.primary.main,
+        color: 'red', // Основной цвет
     },
     menu: {
         top: '60px',
         right: 0,
-        borderRadius: theme.shape.borderRadius,
-        boxShadow: theme.shadows[4],
-        backgroundColor: theme.palette.background.paper,
+        borderRadius: '8px', // Радиус скругления
+        boxShadow: '0px 4px 6px rgba(0, 0, 0, 0.1)', // Тень
+        backgroundColor: '#ffffff', // Цвет фона для элементов
     },
     menuItem: {
         display: 'flex',
         alignItems: 'center',
-        padding: theme.spacing(1, 2),
+        padding: '8px 16px', // Отступы
     },
     menuItemIcon: {
-        marginRight: theme.spacing(1),
+        marginRight: '8px', // Отступ справа
     },
 };

@@ -1,21 +1,9 @@
 import {Link} from "react-router-dom";
-import {makeStyles} from "@mui/styles";
 import {Box, Button, List, ListItem, ListItemText, TextField, Typography} from '@mui/material';
 import {styles} from './styles.js';
 
-const useStyles = makeStyles(theme => ({
-    link: {
-        color: theme.palette.grey[600],
-        textDecoration: "none",
-        "&:hover": {
-            color: theme.palette.grey[900],
-            textDecoration: "underline",
-        },
-    },
-}));
 
 const Footer = () => {
-    const classes = useStyles();
 
     return (
         <footer>
@@ -25,9 +13,23 @@ const Footer = () => {
                     {/* 1st block */}
                     <Box sx={styles.block}>
                         <Typography variant="body2" sx={styles.links}>
-                            <Link to="#" className={classes.link}>Terms</Link>{" "}
-                            ·{" "}
-                            <Link to="#" className={classes.link}>Privacy Policy</Link>
+
+                            <Typography
+                                to="#" variant="subtitle2"
+                                component={Link}
+                                sx={styles.link}>
+                                Terms
+                            </Typography>{" & "}
+
+                            <Typography
+                                to="#"
+                                variant="subtitle2"
+                                component={Link}
+                                sx={styles.link}>
+                                Privacy
+                                Policy
+                            </Typography>
+
                         </Typography>
                     </Box>
 
@@ -37,27 +39,33 @@ const Footer = () => {
                         <List sx={styles.list}>
                             <ListItem sx={styles.listItem}>
                                 <ListItemText>
-                                    <Link to="#" className={classes.link}>Web Studio</Link>
+                                    {/*<Link to="#" sx={styles.link}>Web Studio</Link>*/}
+                                    <Typography to="#" variant="subtitle1" component={Link} sx={styles.link}>Web
+                                        Studio</Typography>
                                 </ListItemText>
                             </ListItem>
                             <ListItem sx={styles.listItem}>
                                 <ListItemText>
-                                    <Link to="#" className={classes.link}>DynamicBox Flex</Link>
+                                    <Typography to="#" variant="subtitle1" component={Link} sx={styles.link}>DynamicBox
+                                        Flex</Typography>
                                 </ListItemText>
                             </ListItem>
                             <ListItem sx={styles.listItem}>
                                 <ListItemText>
-                                    <Link to="#" className={classes.link}>Programming Forms</Link>
+                                    <Typography to="#" variant="subtitle1" component={Link} sx={styles.link}>Programming
+                                        Forms</Typography>
                                 </ListItemText>
                             </ListItem>
                             <ListItem sx={styles.listItem}>
                                 <ListItemText>
-                                    <Link to="#" className={classes.link}>Integrations</Link>
+                                    <Typography to="#" variant="subtitle1" component={Link}
+                                                sx={styles.link}>Integrations</Typography>
                                 </ListItemText>
                             </ListItem>
                             <ListItem sx={styles.listItem}>
                                 <ListItemText>
-                                    <Link to="#" className={classes.link}>Command-line</Link>
+                                    <Typography to="#" variant="subtitle1" component={Link}
+                                                sx={styles.link}>Command-line</Typography>
                                 </ListItemText>
                             </ListItem>
                         </List>
@@ -69,27 +77,32 @@ const Footer = () => {
                         <List sx={styles.list}>
                             <ListItem sx={styles.listItem}>
                                 <ListItemText>
-                                    <Link to="#" className={classes.link}>Documentation</Link>
+                                    <Typography to="#" variant="subtitle1" component={Link}
+                                                sx={styles.link}>Documentation</Typography>
                                 </ListItemText>
                             </ListItem>
                             <ListItem sx={styles.listItem}>
                                 <ListItemText>
-                                    <Link to="#" className={classes.link}>Tutorials & Guides</Link>
+                                    <Typography to="#" variant="subtitle1" component={Link} sx={styles.link}>Tutorials &
+                                        Guides</Typography>
                                 </ListItemText>
                             </ListItem>
                             <ListItem sx={styles.listItem}>
                                 <ListItemText>
-                                    <Link to="#" className={classes.link}>Blog</Link>
+                                    <Typography to="#" variant="subtitle1" component={Link}
+                                                sx={styles.link}>Blog</Typography>
                                 </ListItemText>
                             </ListItem>
                             <ListItem sx={styles.listItem}>
                                 <ListItemText>
-                                    <Link to="#" className={classes.link}>Support Center</Link>
+                                    <Typography to="#" variant="subtitle1" component={Link} sx={styles.link}>Support
+                                        Center</Typography>
                                 </ListItemText>
                             </ListItem>
                             <ListItem sx={styles.listItem}>
                                 <ListItemText>
-                                    <Link to="#" className={classes.link}>Partners</Link>
+                                    <Typography to="#" variant="subtitle1" component={Link}
+                                                sx={styles.link}>Partners</Typography>
                                 </ListItemText>
                             </ListItem>
                         </List>
@@ -101,27 +114,32 @@ const Footer = () => {
                         <List sx={styles.list}>
                             <ListItem sx={styles.listItem}>
                                 <ListItemText>
-                                    <Link to="#" className={classes.link}>Home</Link>
+                                    <Typography to="#" variant="subtitle1" component={Link}
+                                                sx={styles.link}>Home</Typography>
                                 </ListItemText>
                             </ListItem>
                             <ListItem sx={styles.listItem}>
                                 <ListItemText>
-                                    <Link to="#" className={classes.link}>About us</Link>
+                                    <Typography to="#" variant="subtitle1" component={Link} sx={styles.link}>About
+                                        us</Typography>
                                 </ListItemText>
                             </ListItem>
                             <ListItem sx={styles.listItem}>
                                 <ListItemText>
-                                    <Link to="#" className={classes.link}>Company values</Link>
+                                    <Typography to="#" variant="subtitle1" component={Link} sx={styles.link}>Company
+                                        values</Typography>
                                 </ListItemText>
                             </ListItem>
                             <ListItem sx={styles.listItem}>
                                 <ListItemText>
-                                    <Link to="#" className={classes.link}>Pricing</Link>
+                                    <Typography to="#" variant="subtitle1" component={Link}
+                                                sx={styles.link}>Pricing</Typography>
                                 </ListItemText>
                             </ListItem>
                             <ListItem sx={styles.listItem}>
                                 <ListItemText>
-                                    <Link to="#" className={classes.link}>Privacy Policy</Link>
+                                    <Typography to="#" variant="subtitle1" component={Link} sx={styles.link}>Privacy
+                                        Policy</Typography>
                                 </ListItemText>
                             </ListItem>
                         </List>
@@ -134,7 +152,7 @@ const Footer = () => {
                             Get the latest news and articles to your inbox every month.
                         </Typography>
                         <form>
-                            <Box sx={styles.formGroup}>
+                            <Box style={styles.formGroup}>
                                 <TextField
                                     id="newsletter"
                                     type="email"

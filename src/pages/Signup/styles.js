@@ -1,5 +1,3 @@
-import theme from '../../styles/theme.js'
-
 export const styles = {
     container: {
         display: 'flex',
@@ -7,32 +5,32 @@ export const styles = {
         alignItems: 'center',
         justifyContent: 'center',
         minHeight: '100vh',
-        backgroundColor: theme.palette.background.default,
+        backgroundColor: '#f5f5f5', // Цвет фона по умолчанию
         textAlign: 'center',
     },
     formContainer: {
         width: '100%',
-        maxWidth: 500,
-        padding: theme.spacing(3),
-        backgroundColor: theme.palette.background.paper,
-        borderRadius: theme.shape.borderRadius,
-        boxShadow: theme.shadows[5],
+        maxWidth: '500px',
+        padding: '24px', // Паддинг
+        backgroundColor: '#ffffff', // Цвет фона для элементов
+        borderRadius: '8px', // Радиус границы
+        boxShadow: '0px 4px 8px rgba(0, 0, 0, 0.2)', // Тень
     },
     title: {
-        marginBottom: theme.spacing(2),
+        marginBottom: '16px', // Отступ снизу
     },
     form: {
-        width: '100%', // Fix IE11 issue.
+        width: '100%', // Fix IE11 issue
     },
     buttonContainer: {
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
-        marginTop: theme.spacing(2),
+        marginTop: '16px', // Отступ сверху
     },
     link: {
-        marginTop: theme.spacing(2),
+        marginTop: '16px', // Отступ сверху
         textDecoration: 'none',
-        color: theme.palette.primary.main,
+        color: '#6200ea', // Основной цвет
     },
 };

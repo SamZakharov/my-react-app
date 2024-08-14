@@ -10,9 +10,7 @@ import {styles} from './styles';
 
 export default function DetailPage() {
     const {id} = useParams();
-    console.log('ID from useParams:', id);
     const {data: product, error, isLoading} = useGetProductByIdQuery(id);
-    console.log('Product query result:', product);
 
     // State to manage the current image index
     const [imgIndex, setImgIndex] = useState(0);

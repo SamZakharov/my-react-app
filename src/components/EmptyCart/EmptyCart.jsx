@@ -1,6 +1,6 @@
 import {Box, Typography} from '@mui/material';
 import {styles} from './styles';
-import emptycart from '../../assets/404.svg';
+import emptycart from '../../assets/image/404/404.svg';
 
 const EmptyCart = () => {
     return (

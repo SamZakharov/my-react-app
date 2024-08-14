@@ -1,5 +1,3 @@
-import theme from "../../styles/theme.js";
-
 export const styles = {
     container: {
         display: 'flex',
@@ -11,38 +9,40 @@ export const styles = {
         alignItems: 'center',
     },
     button: {
-        backgroundColor: theme.palette.primary.main,
-        color: theme.palette.primary.contrastText,
-        borderRadius: theme.shape.borderRadius,
-        margin: theme.spacing(0.5),
+        backgroundColor: '#6200ea', // Основной цвет
+        color: '#ffffff', // Цвет текста
+        borderRadius: '8px', // Радиус границ
+        margin: '4px', // Отступы
         '&:hover': {
-            backgroundColor: theme.palette.primary.dark,
+            backgroundColor: '#3700b3', // Цвет при наведении
         },
     },
     addButton: {
-        backgroundColor: theme.palette.primary.main,
-        color: theme.palette.primary.contrastText,
-        borderRadius: theme.shape.borderRadius,
+        backgroundColor: '#6200ea', // Основной цвет
+        color: '#ffffff', // Цвет текста
+        borderRadius: '8px', // Радиус границ
         '&:hover': {
-            backgroundColor: theme.palette.primary.dark,
+            backgroundColor: '#3700b3', // Цвет при наведении
         },
     },
     removeButton: {
-        backgroundColor: theme.palette.error.main,
-        color: theme.palette.error.contrastText,
-        borderRadius: theme.shape.borderRadius,
-        margin: theme.spacing(0.5),
+        backgroundColor: '#d32f2f', // Цвет ошибки
+        color: '#ffffff', // Контрастный цвет текста
+        borderRadius: '8px', // Радиус границ
+        margin: '4px', // Отступы
         '&:hover': {
-            backgroundColor: theme.palette.error.dark,
+            backgroundColor: '#9a0007', // Цвет при наведении
         },
     },
     quantity: {
-        backgroundColor: theme.palette.grey[200],
-        color: theme.palette.text.primary,
-        border: `1px solid ${theme.palette.divider}`,
-        borderRadius: theme.shape.borderRadius,
-        padding: theme.spacing(0.5, 1),
-        margin: theme.spacing(0, 1),
+        backgroundColor: '#eeeeee', // Светло-серый фон
+        color: '#333333', // Основной цвет текста
+        border: '1px solid #e0e0e0', // Граница
+        borderRadius: '8px', // Радиус границ
+        padding: '4px 8px', // Отступы
+        margin: '0 8px', // Отступы по бокам
         textAlign: 'center',
     },
 };
+
+export default styles;

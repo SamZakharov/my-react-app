@@ -1,33 +1,33 @@
-import theme from '../../styles/theme.js';
-
 export const styles = {
     container: {
         display: 'flex',
-        flexDirection: 'column',  // Добавлено для управления направлением
-        padding: theme.spacing(2),
+        flexDirection: 'column',  // Управление направлением
+        padding: '16px', // Отступы
     },
     header: {
-        color: theme.palette.primary.main,
-        marginBottom: theme.spacing(2),
-        fontSize: '1.5rem',
-        fontWeight: 'bold',
+        color: '#6200ea', // Основной цвет
+        marginBottom: '16px', // Отступ внизу
+        fontSize: '1.5rem', // Размер шрифта
+        fontWeight: 'bold', // Жирный шрифт
     },
     item: {
-        marginBottom: theme.spacing(2),
-        padding: theme.spacing(1),
-        border: `1px solid ${theme.palette.divider}`,
-        borderRadius: theme.shape.borderRadius,
+        marginBottom: '16px', // Отступ внизу
+        padding: '8px', // Внутренний отступ
+        border: '1px solid #e0e0e0', // Граница
+        borderRadius: '8px', // Радиус границ
     },
     removeButton: {
-        backgroundColor: theme.palette.error.main,
-        color: theme.palette.error.contrastText,
+        backgroundColor: '#d32f2f', // Цвет кнопки удаления (ошибка)
+        color: '#ffffff', // Цвет текста на кнопке
         '&:hover': {
-            backgroundColor: theme.palette.error.dark,
+            backgroundColor: '#b71c1c', // Цвет кнопки при наведении
         },
     },
     totalContainer: {
-        marginTop: theme.spacing(2),
-        padding: theme.spacing(1),
-        borderTop: `1px solid ${theme.palette.divider}`,
+        marginTop: '16px', // Отступ сверху
+        padding: '8px', // Внутренний отступ
+        borderTop: '1px solid #e0e0e0', // Граница сверху
     },
 };
+
+export default styles;

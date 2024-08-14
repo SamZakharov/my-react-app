@@ -2,36 +2,32 @@ import {useEffect, useState} from 'react';
 import PropTypes from 'prop-types';
 import {useSearchParams} from 'react-router-dom';
 import {TbCategoryPlus} from 'react-icons/tb';
-import {ThreeDots} from 'react-loader-spinner';
 import {Box, IconButton, List, ListItem, Typography} from '@mui/material';
 import {styles} from './styles';
 import {useGetAllCategoriesQuery} from '../../redux/productsApi/productsApi.js';
 
 function FilterCategory({query, setQuery}) {
-    const [selectedCat, setSelectedCat] = useState(0);
+    const [selectedCat, setSelectedCat] = useState('0'); // Default value as string
     const [searchParams, setSearchParams] = useSearchParams();
     const [showCat, setShowCat] = useState(true);
 
     const {data: catList = [], isLoading} = useGetAllCategoriesQuery();
 
     useEffect(() => {
-        // Получаем значение параметра 'category' из searchParams
         const category = searchParams.get('category');
-        console.log('Category from searchParams:', category);
 
         if (category) {
             setQuery({...query, category});
             setSelectedCat(category);
         } else {
-            // Устанавливаем значение по умолчанию, если параметр не найден
-            setQuery({...query, category: 0});
-            setSelectedCat(0);
+
+            setQuery({...query, category: '0'});
+            setSelectedCat('0');
         }
     }, []);
 
-
     const categoryHandler = (e) => {
-        const catId = e.target.id;
+        const catId = e.target.id.toString();
 
         setSelectedCat(catId);
 
@@ -43,7 +39,7 @@ function FilterCategory({query, setQuery}) {
             setSearchParams({...query, category: catId});
         }
 
-        if (catId === 0) {
+        if (catId === '0') {
             searchParams.delete('category');
             setSearchParams(searchParams);
         }
@@ -56,41 +52,30 @@ function FilterCategory({query, setQuery}) {
                     <TbCategoryPlus className="icon"/>
                     Categories:
                 </Typography>
-                {isLoading ? (
-                    <ThreeDots
-                        visible={true}
-                        height="30"
-                        width="30"
-                        color="#703BF7"
-                        radius="9"
-                        ariaLabel="three-dots-loading"
-                        wrapperStyle={{}}
-                        wrapperClass="loader"
-                    />
-                ) : (
-                    <List>
-                        <ListItem
-                            sx={styles.listItem(selectedCat === 0)}
-                            onClick={categoryHandler}
-                            id="0"
-                        >
-                            All
-                        </ListItem>
-                        {catList.map(({id, name}) => {
-                            if (id > 5) return null;
-                            return (
-                                <ListItem
-                                    key={id}
-                                    sx={styles.listItem(selectedCat === id)}
-                                    onClick={categoryHandler}
-                                    id={id}
-                                >
-                                    {name}
-                                </ListItem>
-                            );
-                        })}
-                    </List>
-                )}
+
+                <List>
+                    <ListItem
+                        sx={styles.listItem(selectedCat === '0')}
+                        onClick={categoryHandler}
+                        id="0"
+                    >
+                        All
+                    </ListItem>
+                    {catList.map(({id, name}) => {
+                        if (id > 5) return null;
+                        return (
+                            <ListItem
+                                key={id}
+                                sx={styles.listItem(selectedCat === id.toString())}
+                                onClick={categoryHandler}
+                                id={id.toString()}
+                            >
+                                {name}
+                            </ListItem>
+                        );
+                    })}
+                </List>
+
             </Box>
             <IconButton onClick={() => setShowCat((prev) => !prev)} sx={styles.toggleButton}>
                 <TbCategoryPlus className="icon"/>
@@ -102,8 +87,8 @@ function FilterCategory({query, setQuery}) {
 
 FilterCategory.propTypes = {
     query: PropTypes.shape({
-        search: PropTypes.string,  // Проп search, если он есть в query
-        category: PropTypes.string, // Проп category, если он есть в query
+        search: PropTypes.string,
+        category: PropTypes.string.isRequired,
     }).isRequired,
     setQuery: PropTypes.func.isRequired,
 };

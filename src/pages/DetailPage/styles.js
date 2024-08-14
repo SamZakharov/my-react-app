@@ -1,12 +1,10 @@
-import theme from '../../styles/theme.js';
-
 export const styles = {
     wrapper: {
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
-        backgroundColor: theme.palette.background.default,
-        padding: theme.spacing(2),
+        backgroundColor: '#f5f5f5', // Цвет фона по умолчанию
+        padding: '16px', // 2 * 8px
     },
     loaderWrapper: {
         display: 'flex',
@@ -18,40 +16,40 @@ export const styles = {
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
-        backgroundColor: theme.palette.background.paper,
-        padding: theme.spacing(4),
-        borderRadius: theme.shape.borderRadius,
+        backgroundColor: '#ffffff', // Цвет фона для элементов
+        padding: '32px', // 4 * 8px
+        borderRadius: '8px', // Радиус границ
     },
     details: {
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
-        marginTop: theme.spacing(2),
+        marginTop: '16px', // 2 * 8px
     },
     title: {
-        fontWeight: theme.typography.fontWeightBold,
-        marginBottom: theme.spacing(1),
+        fontWeight: 600, // Жирность шрифта
+        marginBottom: '8px', // 1 * 8px
     },
     category: {
-        color: theme.palette.text.secondary,
-        marginBottom: theme.spacing(1),
+        color: '#666666', // Второстепенный цвет текста
+        marginBottom: '8px', // 1 * 8px
     },
     description: {
         textAlign: 'center',
-        color: theme.palette.text.primary,
-        marginBottom: theme.spacing(2),
+        color: '#333333', // Основной цвет текста
+        marginBottom: '16px', // 2 * 8px
     },
     priceContainer: {
         display: 'flex',
         justifyContent: 'space-between',
         alignItems: 'center',
         width: '100%',
-        marginTop: theme.spacing(2),
+        marginTop: '16px', // 2 * 8px
     },
     priceLabel: {
-        color: theme.palette.text.secondary,
+        color: '#666666', // Второстепенный цвет текста
     },
     price: {
-        fontWeight: theme.typography.fontWeightBold,
+        fontWeight: 600, // Жирность шрифта
     },
 };

@@ -3,10 +3,11 @@ export const styles = {
         display: 'flex',
         padding: '16px',
         backgroundColor: '#f5f5f5',
+        gap: '60px'
     },
     categoryContainer: {
-        borderRadius: '0',
-        backgroundColor: 'black'
+        borderRadius: '10px',
+        backgroundColor: 'black',
     },
     contentWrapper: {
         display: 'flex',
@@ -15,7 +16,7 @@ export const styles = {
     },
     productsGrid: {
         display: 'grid',
-        gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
+        gridTemplateColumns: 'repeat(auto-fit, minmax(350px, 2fr))',
         gap: '16px',
         width: '100%',
     },

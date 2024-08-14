@@ -1,28 +1,28 @@
-import theme from "../../../styles/theme.js";
-
 export const styles = {
     container: {
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
-        padding: theme.spacing(2),
-        gap: theme.spacing(2),
+        padding: '16px', // Отступ
+        gap: '16px', // Промежуток между элементами
     },
     form: {
         width: '100%',
-        maxWidth: 600,
+        maxWidth: '600px', // Максимальная ширина формы
     },
     heading: {
-        marginBottom: theme.spacing(4),
+        marginBottom: '32px', // Отступ внизу заголовка
     },
     formSection: {
-        marginBottom: theme.spacing(2),
+        marginBottom: '16px', // Отступ внизу раздела формы
     },
     submitSection: {
         display: 'flex',
-        justifyContent: 'center',
+        justifyContent: 'center', // Центрирование кнопки
     },
     submitButton: {
-        padding: theme.spacing(1.5, 3),
+        padding: '12px 24px', // Внутренний отступ кнопки
     },
 };
+
+export default styles;

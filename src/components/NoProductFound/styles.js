@@ -1,5 +1,3 @@
-import theme from "../../styles/theme.js";
-
 export const styles = {
     container: {
         display: 'flex',
@@ -8,23 +6,26 @@ export const styles = {
         justifyContent: 'center',
         textAlign: 'center',
         width: '100%',
-        padding: theme.spacing(2),
+        padding: '16px', // Отступы вокруг контейнера
     },
     image: {
-        width: {
-            xs: 192, // small screens
-            sm: 320, // medium screens
-            md: 320, // medium screens
-            lg: 384, // large screens
+        width: '100%', // Ширина изображения будет автоматически изменяться по ширине контейнера
+        maxWidth: {
+            xs: '192px', // Для маленьких экранов
+            sm: '320px', // Для средних экранов
+            md: '320px', // Для средних экранов
+            lg: '384px', // Для больших экранов
         },
         height: 'auto',
-        marginBottom: theme.spacing(2),
+        marginBottom: '16px', // Отступ снизу
     },
     title: {
-        fontWeight: theme.typography.fontWeightBold,
-        marginBottom: theme.spacing(1),
+        fontWeight: 'bold', // Жирный шрифт
+        marginBottom: '8px', // Отступ снизу
     },
     subtitle: {
-        color: theme.palette.text.secondary,
+        color: '#666666', // Цвет текста для подзаголовка
     },
 };
+
+export default styles;

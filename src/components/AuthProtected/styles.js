@@ -1,17 +1,17 @@
-import theme from "../../styles/theme.js";
-
 export const styles = {
     container: {
         display: 'flex',
         flexDirection: 'column',
         minHeight: '100vh',
-        backgroundColor: theme.palette.background.default,
-        padding: theme.spacing(2),
-        border: `1px solid ${theme.palette.divider}`,
-        borderRadius: theme.shape.borderRadius,
+        backgroundColor: '#f5f5f5', // Цвет фона
+        padding: '16px', // Отступы
+        border: '1px solid #e0e0e0', // Граница
+        borderRadius: '8px', // Радиус границ
     },
     content: {
         flexGrow: 1,
-        padding: theme.spacing(2),
+        padding: '16px', // Отступы
     },
 };
+
+export default styles;

@@ -1,6 +1,5 @@
-import React from 'react';
 import PropTypes from 'prop-types';
-import {ListItem, ListItemIcon, ListItemText} from '@mui/material';
+import {ListItem, ListItemButton, ListItemIcon, ListItemText} from '@mui/material';
 import {styles} from './styles.js';
 
 const Theme = ({Icon, mode, setTheme}) => {
@@ -10,16 +9,17 @@ const Theme = ({Icon, mode, setTheme}) => {
     };
 
     return (
-        <ListItem
-            button
-            sx={styles.listItem}
-            selected={localStorage.theme === mode}
-            onClick={selectThemeHandler}
-        >
-            <ListItemIcon>
-                <Icon/>
-            </ListItemIcon>
-            <ListItemText primary={mode}/>
+        <ListItem disablePadding>
+            <ListItemButton
+                sx={styles.listItem}
+                selected={localStorage.theme === mode}
+                onClick={selectThemeHandler}
+            >
+                <ListItemIcon sx={styles.listItemIcon}>
+                    <Icon/>
+                </ListItemIcon>
+                <ListItemText primary={mode}/>
+            </ListItemButton>
         </ListItem>
     );
 };

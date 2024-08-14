@@ -1,5 +1,3 @@
-import theme from '../../styles/theme.js';
-
 export const styles = {
     wrapper: {
         display: 'flex',
@@ -8,15 +6,17 @@ export const styles = {
         justifyContent: 'center',
         width: '100%',
         textAlign: 'center',
-        padding: theme.spacing(3), // Assuming spacing is already in pixels
+        padding: '24px', // Отступ
     },
     title: {
-        fontSize: '32px', // 2rem equivalent in pixels
+        fontSize: '32px', // Размер шрифта заголовка
         fontWeight: 'bold',
-        margin: theme.spacing(2, 0), // Assuming spacing is already in pixels
+        margin: '16px 0', // Отступ сверху и снизу
     },
     subTitle: {
-        fontSize: '16px', // 1rem equivalent in pixels
-        color: theme.palette.text.secondary,
+        fontSize: '16px', // Размер шрифта подзаголовка
+        color: '#666666', // Второстепенный цвет текста
     },
 };
+
+export default styles;

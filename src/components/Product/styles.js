@@ -1,50 +1,55 @@
-import theme from "../../styles/theme.js";
-
 export const styles = {
     main: {
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        backgroundColor: theme.palette.background.default,
-        padding: theme.spacing(2),
-        border: `1px solid ${theme.palette.divider}`,
-        borderRadius: theme.shape.borderRadius,
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        backgroundColor: '#f5f5f5',
+        padding: '16px',
+        border: '1px solid #e0e0e0',
+        borderRadius: '8px',
     },
     image: {
-        width: '100%',
-        height: 200,
-        objectFit: 'cover',
-        borderRadius: theme.shape.borderRadius,
+        height: '300px',
+        objectFit: 'contain',
+        borderRadius: '8px',
     },
     title: {
-        fontWeight: theme.typography.fontWeightBold,
-        marginBottom: theme.spacing(1),
+        textAlign: 'center',
+        fontWeight: 'bold',
+        marginBottom: '8px',
     },
     description: {
-        color: theme.palette.text.secondary,
-        marginBottom: theme.spacing(1),
+        color: '#666666',
+        marginBottom: '8px',
     },
     readMore: {
-        fontWeight: theme.typography.fontWeightBold,
-        marginLeft: theme.spacing(1),
+        fontWeight: 'bold',
+        marginLeft: '8px',
         textDecoration: 'none',
-        color: theme.palette.primary.main,
+        color: '#6200ea',
     },
     category: {
-        color: theme.palette.text.secondary,
-        marginBottom: theme.spacing(2),
+        fontWeight: 'bold',
+        textAlign: 'center',
+        color: '#666666',
+        marginBottom: '16px',
     },
     priceContainer: {
         display: 'flex',
         justifyContent: 'space-between',
         alignItems: 'center',
-        marginBottom: theme.spacing(2),
+        marginBottom: '16px',
     },
     price: {
-        fontWeight: theme.typography.fontWeightBold,
+        fontWeight: 'bold',
     },
     button: {
         backgroundColor: 'blue',
-        padding: '16px 20px'
+        padding: '16px 20px',
+        color: '#ffffff',
+        border: 'none',
+        borderRadius: '4px',
+        cursor: 'pointer',
+        textAlign: 'center',
     }
 };

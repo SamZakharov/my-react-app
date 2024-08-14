@@ -1,5 +1,3 @@
-import theme from "../../styles/theme.js";
-
 export const styles = {
     container: {
         display: 'flex',
@@ -11,13 +9,13 @@ export const styles = {
         display: 'flex',
         flexDirection: 'row',
         flexWrap: 'wrap',
-        gap: theme.spacing(1),
+        gap: '8px', // Размер интервала между миниатюрами
     },
     thumbnail: {
-        borderRadius: theme.shape.borderRadius,
-        width: 60,
-        height: 60,
-        padding: theme.spacing(0.5),
+        borderRadius: '8px', // Радиус скругления углов
+        width: '60px', // Ширина миниатюры
+        height: '60px', // Высота миниатюры
+        padding: '4px', // Отступ вокруг изображения
     },
     thumbnailImage: {
         width: '100%',
@@ -31,7 +29,9 @@ export const styles = {
     },
     mainImage: {
         maxWidth: '100%',
-        borderRadius: theme.shape.borderRadius,
+        borderRadius: '8px', // Радиус скругления углов
         objectFit: 'cover',
     },
 };
+
+export default styles;

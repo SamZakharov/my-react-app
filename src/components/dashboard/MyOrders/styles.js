@@ -1,8 +1,6 @@
-import theme from "../../../styles/theme.js";
-
 export const styles = {
     container: {
-        marginTop: theme.spacing(6),
+        marginTop: '48px', // Отступ сверху
         height: '100%',
         display: 'flex',
         flexDirection: 'column',
@@ -12,21 +10,21 @@ export const styles = {
     orderCard: {
         display: 'flex',
         flexDirection: 'column',
-        padding: theme.spacing(2),
-        marginBottom: theme.spacing(2),
+        padding: '16px', // Внутренний отступ
+        marginBottom: '16px', // Отступ снизу
         width: '100%',
-        maxWidth: 800,
-        borderRadius: theme.shape.borderRadius,
-        boxShadow: theme.shadows[3],
+        maxWidth: '800px', // Максимальная ширина
+        borderRadius: '8px', // Радиус скругления углов
+        boxShadow: '0px 4px 6px rgba(0, 0, 0, 0.1)', // Тень
     },
     productRow: {
         display: 'grid',
-        gridTemplateColumns: '1fr 1fr 1fr',
-        padding: theme.spacing(1),
-        borderBottom: `1px solid ${theme.palette.divider}`,
+        gridTemplateColumns: '1fr 1fr 1fr', // Колонки
+        padding: '8px', // Внутренний отступ
+        borderBottom: '1px solid #e0e0e0', // Цвет границы
     },
     productTitle: {
-        fontWeight: theme.typography.fontWeightBold,
+        fontWeight: 'bold', // Жирный текст
     },
     productPrice: {
         textAlign: 'center',
@@ -37,10 +35,12 @@ export const styles = {
     orderSummary: {
         display: 'flex',
         justifyContent: 'space-between',
-        marginTop: theme.spacing(2),
-        fontWeight: theme.typography.fontWeightBold,
+        marginTop: '16px', // Отступ сверху
+        fontWeight: 'bold', // Жирный текст
     },
     orderTotal: {
-        fontWeight: theme.typography.fontWeightBold,
+        fontWeight: 'bold', // Жирный текст
     },
 };
+
+export default styles;

@@ -1,5 +1,3 @@
-import theme from '../../styles/theme.js';
-
 export const styles = {
     container: {
         display: 'flex',
@@ -7,24 +5,24 @@ export const styles = {
         alignItems: 'center',
         justifyContent: 'center',
         minHeight: '100vh',
-        backgroundColor: theme.palette.background.default,
+        backgroundColor: '#f5f5f5', // Цвет фона по умолчанию
         textAlign: 'center',
     },
     imageContainer: {
-        marginBottom: theme.spacing(4),
+        marginBottom: '32px', // Отступ снизу
     },
     image: {
         width: 'auto',
-        height: 200,
+        height: '200px',
         maxWidth: '100%',
     },
     errorText: {
         fontSize: '6rem',
-        fontWeight: theme.typography.fontWeightBold,
-        color: theme.palette.error.main,
+        fontWeight: 600, // Жирность шрифта
+        color: '#f44336', // Цвет ошибки (красный)
     },
     message: {
         fontSize: '1.5rem',
-        color: theme.palette.text.primary,
+        color: '#333333', // Основной цвет текста
     },
 };

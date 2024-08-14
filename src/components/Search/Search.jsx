@@ -2,7 +2,6 @@ import PropTypes from 'prop-types';
 import {useEffect, useState} from 'react';
 import {useSearchParams} from 'react-router-dom';
 import {IconButton, InputBase, Paper} from '@mui/material';
-import {CiSearch} from 'react-icons/ci';
 import {styles} from './styles';
 
 const Search = ({query: {query, setQuery}}) => {
@@ -15,7 +14,7 @@ const Search = ({query: {query, setQuery}}) => {
             setQuery({...query, search});
             setSearchString(search);
         }
-    }, [searchParams, query, setQuery]);
+    }, []);
 
     const searchDataHandler = (e) => {
         setSearchString(e.target.value.toLowerCase());
@@ -35,7 +34,6 @@ const Search = ({query: {query, setQuery}}) => {
     return (
         <Paper component="form" sx={styles.searchContainer}>
             <IconButton onClick={searchHandler} sx={styles.searchIcon}>
-                <CiSearch/>
             </IconButton>
             <InputBase
                 onChange={searchDataHandler}

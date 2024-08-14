@@ -1,5 +1,3 @@
-// styles.js
-
 export const styles = {
     appBar: {
         zIndex: 100,
@@ -23,9 +21,9 @@ export const styles = {
     },
 
     title: {
-        fontWeight: 700, // fontWeightBold
+        fontWeight: 700,
         textDecoration: 'none',
-        color: '#333333', // Основной цвет текста
+        color: '#333333',
     },
 
     navLinks: {
@@ -33,11 +31,15 @@ export const styles = {
         alignItems: 'center',
         padding: '16px',
         gap: '25px',
-        '@media (min-width: 1280px)': { // соответствие theme.breakpoints.up("xl")
+        '@media (min-width: 1280px)': {
             flexDirection: 'row',
             justifyContent: 'space-between',
             padding: 0,
         },
+        border: '1px, solid #6200ea',
+        borderRadius: '10px',
+        width: '500px',
+
     },
     navButton: {
         color: '#333333', // Основной цвет текста

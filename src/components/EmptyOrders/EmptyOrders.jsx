@@ -1,6 +1,6 @@
 import {Box, Typography} from '@mui/material';
 import {styles} from './styles';
-import emptyorders from '../../assets/404.svg';
+import emptyorders from '../../assets/image/404/404.svg';
 
 const EmptyOrders = () => {
     return (

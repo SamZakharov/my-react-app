@@ -29,7 +29,7 @@
 
 import {Box, Container, Typography} from '@mui/material';
 import {styles} from './styles';
-import img from '../../assets/404.svg'
+import img from '../../assets/image/404/404.svg'
 
 const NotFound = () => {
     return (
